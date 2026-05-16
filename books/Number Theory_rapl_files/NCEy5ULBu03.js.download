@@ -1,0 +1,5 @@
+;/*FB_PKG_DELIM*/
+
+__d("GlobalVideoPortsContexts",["react"],(function(a,b,c,d,e,f,g){"use strict";e=d("react");f=e.createContext;var h=e.useContext,i=f(null),j=f(null),k=f(null);function a(){return h(i)}function b(){return h(j)}function c(){return h(k)}d=i.Provider;e=j.Provider;f=k.Provider;g.useGlobalVideoPortsLoader=a;g.useGlobalVideoPortsManager=b;g.useGlobalVideoPortsState=c;g.GlobalVideoPortsLoaderContextProvider=d;g.GlobalVideoPortsManagerContextProvider=e;g.GlobalVideoPortsStateContextProvider=f}),98);
+__d("VideoPlayerViewabilityConstants",[],(function(a,b,c,d,e,f){"use strict";a={DEFAULT_VIEWABILITY_PERCENTAGE_FOR_PAUSE:.5};b=a;f["default"]=b}),66);
+__d("VideoPlayerViewabilityHooks",["VideoPlayerHooks"],(function(a,b,c,d,e,f,g){"use strict";g.useVideoPlayerExtendedPassiveViewabilityInfo=d("VideoPlayerHooks").useVideoPlayerExtendedPassiveViewabilityInfo,g.useVideoPlayerPassiveViewabilityInfo=d("VideoPlayerHooks").useVideoPlayerPassiveViewabilityInfo,g.useVideoPlayerViewabilityInfo=d("VideoPlayerHooks").useVideoPlayerViewabilityInfo}),98);

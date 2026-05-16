@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("relay-runtime/store/hasSignificantOverlappingIDs",["relay-runtime/store/RelayStoreUtils","relay-runtime/store/ViewerPattern"],(function(a,b,c,d,e,f){"use strict";var g=b("relay-runtime/store/RelayStoreUtils").ROOT_ID,h=b("relay-runtime/store/ViewerPattern").VIEWER_ID,i=typeof Symbol==="function"?Symbol.iterator:"@@iterator";function a(a,b){a=a[i]();var c=a.next();while(!c.done){var d=c.value;if(b.has(d)&&d!==g&&d!==h)return!0;c=a.next()}return!1}e.exports=a}),null);

@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("ChatContentSearch",["AsyncRequest","MessengerPlatformQueryType","XMessengerPlatformContentSearchController"],(function(a,b,c,d,e,f,g){"use strict";function a(a){var b=a.query,d=a.callback,e=a.ftentidentifier,f=a.resume,g=a.searchInterface;a=a.platformFBIDs;f=c("XMessengerPlatformContentSearchController").getURIBuilder().setString("resume",f);b!=null&&b.length>0?f.setString("q",b):f.setEnum("qtype",c("MessengerPlatformQueryType").TRENDING);g!=null&&f.setEnum("interface",g);a!=null&&f.setIntVector("platform_fbids",a);e!=null&&f.setString("ftentidentifier",e);b=new(c("AsyncRequest"))().setURI(f.getURI()).setHandler(d);b.send();return b}g.getContentForQuery=a}),98);

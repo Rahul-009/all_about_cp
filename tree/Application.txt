@@ -1,0 +1,41 @@
+Applications of B and B+ trees
+
+1. Disk Structure
+	Tracks
+	Sectors
+	Blocks
+
+	block address = (track, sector)
+	We always read and write in terms of blocks
+	let's assume a block is 512 bytes
+	each byte has it's own address | it's offset
+
+
+
+2. How data is stored on Disk
+	For identifying each byte we need track, sector 	and offset
+
+	Storing data in RAM efficiently is all about 		Data structure
+
+	Storing data in Disk efficiently is all about 		DBMS
+
+3. What is indexing
+	A table of record id and pointer
+
+4. What is multilevel Indexing
+	index table of index table
+
+	index table onek boro hoye gele tokhon abar
+	choto ekta index table banano hoy | sekhane
+	1ta block er jonno 1ta entry thaake
+
+	This reduces the number of block access
+
+	We want self managed multilevel indexing
+	That's where the idea of B-trees come from
+	
+5. M-way search Trees
+
+6. B-trees
+
+7.

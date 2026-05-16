@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("XMessengerPlatformContentSearchController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/messaging/content_search/",{ftentidentifier:{type:"String"},q:{type:"String",defaultValue:""},qtype:{type:"Enum",defaultValue:0,enumType:0},resume:{type:"String",defaultValue:""},"interface":{type:"Enum",enumType:0},platform_fbids:{type:"IntVector"}})}),null);

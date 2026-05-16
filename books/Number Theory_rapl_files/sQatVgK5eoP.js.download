@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("ChatContentSearchTrendingIndicator.react",["cx","fbt","ix","Image.react","react"],(function(a,b,c,d,e,f,g,h,i,j){"use strict";var k=d("react");a=function(a){babelHelpers.inheritsLoose(b,a);function b(){return a.apply(this,arguments)||this}var d=b.prototype;d.shouldComponentUpdate=function(a){return a.shown!==this.props.shown};d.render=function(){return this.props.shown?k.jsxs("div",{className:"_515",children:[k.jsx(c("Image.react"),{src:j("28005")}),i._("Trending")]}):null};return b}(k.Component);g["default"]=a}),98);
