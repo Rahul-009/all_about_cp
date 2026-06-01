@@ -143,6 +143,9 @@ void buildHeap(int a[], int n){
         }
     }
 
+// priority queue is a max heap
+    priority_queue<int> maxHeap; //max heap
+    priority_queue<int , vector<int>, greater<int>> minHeap; // min heap
 
 // median of running stream
     // continuous input of numbers

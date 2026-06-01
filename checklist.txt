@@ -1,0 +1,48 @@
+## Number theory
+- modular Arithmetic
+- basic of primes, divisors, multiples
+- bitwise operations
+- Euclidean Algorithm
+- Sieve of Eratosthenes
+- Binary modular exponentiation
+- combinatorics
+
+## binary Search
+- General binary Search
+- Monotonic functions
+- C++ STL functions
+- binary search on answer
+- convex functions
+- ternary search (basics)
+
+## Greedy
+- Standard Greedy
+- Learn to prove solution (Exchange Arguments)
+- problems from Searching and sorting CSES problems
+
+## Trees
+- Basic properties
+- DFS
+- Binary Lifting
+    # Kth ancestor of a tree node(1483)
+    # Tree of Coprimes (1766)
+    # Minimum Edge Weight Equilibrium Queries in a Tree (2846)
+    # Cycle Length Queries in a Tree (2509)
+    # Closest Node to Path in Tree (2277)
+- Finding LCA in logn
+- Trees problems (CSES)
+
+## Graphs
+- Basic properties
+- DFS, BFS
+- Connected Components
+- Directed Graph basics
+- 1 minimum spanning trees (prim, kruskal)
+- DSU
+
+## DP
+- Standard DP
+- Problems from DP (CSES)
+- DP with bitmasking
+- DP on Trees
+- iterative DP
