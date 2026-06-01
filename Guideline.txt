@@ -1,0 +1,91 @@
+Hello Buddies
+Welcome to the world of competitive programming
+
+We are trying to learn programming by solving problems in online judges
+Here is the resources I learned in my short journey.I think it will help you 
+to start your journey in CP.
+
+why I am sharing?
+-Beacuse I believe knowldge is wasted when it isn't shared.
+
+N.B.
+I am doing a online course on CP.
+My CP journey started with this course.. Most of the resources are taken from that course
+This course was created by Shahjalal Shohag(SUST) Bhai
+He is one of the top contributors in Codeforces
+Portfolio Website : https://shahjalalshohag.com/#blog
+codeforces ID : https://codeforces.com/profile/YouKn0wWho
+Courses : https://academy.shahjalalshohag.com/courses
+CP_topic_list : https://blog.shahjalalshohag.com/topic-list/
+
+
+#Step-1 : Basic Syntax
+
+Warm up the basic syntax of (C,C++) language
+C++ is the best language for Competitive language!
+Why C++ ?
+-
+
+-The books of Tamim Shahriar Subeen helped me to develop the coding basics
+You can follow the books
+
+Tamim Shahriar Subeen is a Legend of coding sector in BD.. He has published a lot
+of books in different topics of Coding from his own publication (Dimik Publication)
+Here are some links of Subeen bhai's work
+His blog : http://subeen.com/
+His youtube channel : https://www.youtube.com/c/TamimShahriar
+Book on C(1st part) :https://cpbook.subeen.com/
+Dimik publication : http://dimik.pub/
+
+-W3school : https://www.w3schools.com/
+For a quick run on basic syntax this website is best
+It is simple and best for quickly revising the basics of any language
+
+-GeeksforGeeks : https://www.geeksforgeeks.org/
+And the website for nerds 
+This website contains a lots of information.. Choose topics wisely!
+
+-cplusplus.com : https://www.cplusplus.com/
+This is the website I use a lot to learn the builtin functions
+
+
+Step-2 : Text Editor / IDE
+
+Well we have 2 options to run and check C++ code in our PC 
+- IDE (code blocks)
+	IDE is a package of lots of tools.. 
+
+-Text Editors (sublime text / VScode)
+	As text editors are simple and light weight ; they feels so clean and easy to code
+	Best for day to day use
+
+I am currently using sublime text for CP.. Configure sublime text for CP
+Smash : https://www.geeksforgeeks.org/setting-up-sublime-text-for-cpp-competitive-programming-environment/
+
+Configure VScode for CP
+Smash : https://www.geeksforgeeks.org/how-to-setup-competitive-programming-in-visual-studio-code-for-c/
+
+
+step-3 : Online Judge 
+
+Online Judge is a website where online coding contests are conducted
+
+Some Famous judges
+-Codeforces(most famous)
+-Atcoders
+-hackerRank
+-hackerEarth
+-Vjudge(special)
+
+#Codeforces :
+I use Codeforces the most and encouraging everyone to use this for developing the
+problem solving skill
+Open an account and join us !! Lot's of fun awaits you
+
+-Practise problems : https://codeforces.com/group/MWSDmqGsZm/contests
+Start with sheet-1 and conquer all the problems.. 
+Complete all the sheets step by step
+
+
+Well That's all for today !!
+Happy coding
