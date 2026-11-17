@@ -37,7 +37,7 @@
 		// each time the search space divided by a factor
 		
 
-// tail recurtion
+// tail recursion
 	// last statement function call hote hobe
 	void print(int n){
 		if(n == 5) return;
@@ -46,7 +46,7 @@
 		print(n + 1); // last statement
 	}
 
-// head recurtion
+// head recursion
 	int fibo(int n){
 		if(n == 0) return 1;
 		if(n == 1) return 1;
@@ -56,6 +56,7 @@
 		// last statement function call 2tar result add kora and return kora
 		// function er return value var e store kore jog kore return korle bujha jabe
 	}
+
 
 // concept
 	void func(int n){

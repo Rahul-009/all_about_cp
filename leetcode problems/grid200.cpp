@@ -51,8 +51,8 @@ public:
 
         int islands = 0;
 
-        int dr[4] = {1, -1, 0, 0};
-        int dc[4] = {0, 0, 1, -1};
+        int dr[] = {1, -1, 0, 0};
+        int dc[] = {0, 0, 1, -1};
 
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {

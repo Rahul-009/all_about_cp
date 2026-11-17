@@ -19,29 +19,24 @@
 		vis[n] = true;
 
 		// cout << n << " " << p << endl;
-		for(int i=0; i<adj[n].size(); i++){
-			if(vis[adj[n][i]] && adj[n][i] == p) continue;
-			if(vis[adj[n][i]]) return;
+		for(auto v: adj[n]){
+			if(v == p) continue;
+			if(vis[v]) continue;
 
-			dfs(adj[n][i], n);
+			dfs(v, n);
 		}
 	}
 
 
-// connected component O(V+E)
+// connected component (CC) O(V+E)
 	// ekta node theke onno shob node e jawa gele oi nodegula connected component
 	// shob node er jonno dfs chalabo | ekbar jegula visited hoye jabe oigular jonno 2nd time dfs cholbe na
 	// total jotobar dfs cholbe totogula connected component
 
 	// main er vitore | done | dfs e no change
 	int cnt = 0; // ans
-	for(int i=1; i<=n; i++){
-		if(vis[i]) continue;
-		dfs(i);
-		cnt++;
-	}
-
-	// store all connected componenets
+	vector<int> currect_cc;
+	vector<vector<int>> all_cc; // ans
 	void dfs(int v){
 		vis[v] = true;
 		current_cc.push_back(v); // vertex dhuklei store korbo
@@ -51,14 +46,11 @@
 		}
 	}
 
-	vector<vector<int>> cc;
-	vector<int> current_cc;
-
 	for(int i=1; i<=n; i++){
 		if(vis[i]) continue;
-		current_cc.clear(); // current path khali korbo
+		currect_cc.clear();
 		dfs(i);
-		cc.push_back(current_cc); //vector push in vector
+		all_cc.push_back(currect_cc)
 		cnt++;
 	}
 
@@ -69,32 +61,6 @@
     // we will determine it by graph coloring
     // no adjacent two node can have same color
 
-	queue<int> q;
-	vector<int> adj[N];
-	vector<int> color(N);
-
-	bool is_bipartite(int n){
-		q.push(n);
-		color[n] = 1;
-		while(!q.empty()){
-			int v = q.front();
-			q.pop();
-			for(auto u: adj[v]){
-
-				if(color[u]!=0 && color[v] == color[u]){
-					return false;
-				}
-				if(!color[u]){
-					q.push(u);
-					if(color[v] == 1)
-						color[u] = 2;
-					else if(color[v]==2)
-						color[u] = 1;
-				}
-			}
-		}
-		return true;	
-	}
 	
 	// using DFS
 	const int N = 100;
@@ -107,11 +73,11 @@
 	    vis[node] = 1;
 	    color[node] = c;
 
-	    for(auto nbr: g[node]){
-	        if(!vis[nbr]){
+	    for(auto child: g[node]){
+	        if(!vis[child]){
 	            // xor kore bit flip kortesi
 	            // not use koreo kora jabe
-	            if(dfs(nbr, c^1) == false)
+	            if(dfs(child, c^1) == false)
 	                return false;
 	        }
 	        else{
@@ -122,6 +88,56 @@
 
 	    return true;
 	}
+
+	// simplified => color, visited both not needed
+	bool dfs_bipartite(int node, int c){
+		color[node] = c;
+		for(auto child: g[node]){
+			if(color[child] == -1)
+				if(!dfs_bipartite(child, c^1)) return false;
+			else if(color[child] == color[node]) 
+				return false;
+		}
+		return true;
+	}
+
+	// if graph is disconnected
+	bool isBipartite(int n){
+		for(int i=1; i<=n; i++){
+			if(!vis[i]){
+				if(!dfs_bipartite(i, 0))
+					return false;
+			}
+		}
+		return true;
+	}
+
+
+	// method 2
+	bool ok = true;
+
+	dfs_bipartite(int node, int c){
+		if(!ok) return;
+		color[node] = c;
+
+		for(int child: g[node]){
+			if(color[child] == -1)
+				dfs_bipartite(child, c^1);
+			else if(color[child] == color[node]){
+				ok = false;
+				return;
+			}
+		}
+	}
+
+	bool isBipartite(int n){
+		ok = true;
+		for(int i = 1; i<=n; i++){
+			if(!vis[i]) dfs(i, 0);
+		}
+		return ok;
+	}
+
 
 	//Practise problems-
 		 // https://www.spoj.com/problems/BUGLIFE/
@@ -149,7 +165,7 @@
 		for(auto child : g[v]){
 
 			if(vis[child] && child == p) continue;
-			if(vis[child]) return true;
+			if(vis[child]) return true;	
 
 			isLoopExists |= isCycle(child, v);
 		}
@@ -172,12 +188,38 @@
 	    return false;
 	}
 
+	// code 3
+	bool dfs_cycle(int node, int p){
+		vis[node] = 1;
+		for(auto child: g[node]){
+			if(child == par) continue;
+			if(vis[child]) return true;
+			if(dfs_cycle(child, node)) return true;
+		}
+		return false
+	}
+	// for disconnected graph
+	bool has_cycle(){
+		for(int i = 0; i<nodes; i++){
+			if(!vis[i] && dfs_cycle(i, -1))
+				return true;
+		}
+		return false;
+	}
 
 // in out time of nodes
-	//also called discovery time / leaving time
-	// in time will be higher than parent
-	// out time will be lower than parent 
-	// we can say from this if a node is in the subtree of another node or not
+	// also called discovery time / leaving time
+	// in time will be higher than parent | out time will be lower than parent 
+	
+	//in[node] = entry time, out[node] = exit time after all descendants are done.
+	// timer increments twice per node → timer == 2n at the end.
+	// Ancestor test in O(1): in[u] <= in[v] && out[v] <= out[u].
+	// Subtree = contiguous range [in[u], out[u]] → enables segment-tree subtree queries.
+	// Back edge (cycle) in directed graph: in[v] set && out[v] not set.
+	// Topological order: decreasing out.
+	// u is an ancestor of v ⟺ in[u] < in[v] and out[v] < out[u]  ->  v's interval is inside u's.
+	// u and v are in disjoint subtrees ⟺ their intervals don't overlap -> out[u] < in[v] or out[v] < in[u].
+
 
 	int timer;
 	vector<int> in(n, -1);
@@ -291,11 +333,10 @@
 	// AP can exist without bridges 
 	// so bridge code must be modified
 
-// articulation point
+// articulation point - https://www.youtube.com/watch?v=HSAcx2mEVag
+	// je node delete korle graph 2 ta component e divide hoye jay	
 	// also called Cut vertex
 
-	// je node delete korle graph 2 ta component e divide hoye jay
-	
 	// Bruteforce  O(V*(V+E))
 		// remove all node one by one and check component
 	
@@ -336,8 +377,6 @@
 
         vis[node] = true;
         disc[node] = low[node] = timer++;
-        parent[node] = par;
-        int child  = 0;
 
         for(auto nbr: g[node]){
             if(nbr == par){
@@ -353,8 +392,6 @@
                 if(low[nbr] >= disc[node] && par != -1){
                     ap[node] = true;
                 }
-
-                child++; 
             }
             else{ // back edge
                 low[node] = min(low[node], disc[nbr]); 
@@ -377,7 +414,7 @@
         // dfs on all unvisited node
         for(int i=0; i<nodes; i++){
             if(!vis[i]){
-                dfs()
+                dfs(0, -1)
             }
         }
 

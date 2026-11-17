@@ -183,7 +183,7 @@ int main(){
 		*itr = 10;						//can update the values
 	}
 
-	for(auto itr = v.begin()){
+	for(auto itr = v.cbegin(): itr != v.cend(); itr++){
 		cout << *itr << " ";			// constant iterator are faster
 		*itr = 10;						// cannot update the values; produce error
 	}
@@ -217,7 +217,7 @@ int main(){
 
 	// Remove
 	v.erase(v.begin());							//remove head O(n)
-	v.erase(v.begin() + index);			//remove index O(n)
+	v.erase(v.begin() + index);					//remove index O(n)
 	v.pop_back();								//remove tail O(1)
 
 	// Access
@@ -228,10 +228,10 @@ int main(){
 
 	int sz = v.size();							//returns the size of vector
 	bool isEmpty = v.empty()					//check if the vector is empty or not
-	v.clear();		//clear the vector completely
-	v1.swap(v2);			//swap two vector
-	v1.resize(10);		 	//resize the vector to 10
-	v1.capacity();		//capacity of vector
+	v.clear();									//clear the vector completely
+	v1.swap(v2);								//swap two vector
+	v1.resize(10);		 						//resize the vector to 10
+	v1.capacity();								//capacity of vector
 
 	//emplace() == insert()						//inplace insert, efficient when we use object
 	//emplace_back() == push_back()				//inplace insert at end
@@ -449,7 +449,7 @@ int main(){
 	// nije hash function declare kore use kora jabe
 
 //MULTIMAP
-	// ekta key er jonno multiple value store korar jonno use hoy
+	// ekta key te multiple value store korar jonno use hoy
 	// implentation - Red Black Tree
 	multimap<int, string> m;
 
@@ -523,7 +523,7 @@ int main(){
 	// balanced paranthesis checking problem
 	// NGE problem - Next greater Element
 	// operations - push, pop, top
-	stack<int> s;
+	stack<int> s;  // default implemented by deque
 	stack< int, vector<int> > stckk; // stack using vector
 	s.push(2);		// inserts in the end
 	s.push(3);	
@@ -549,17 +549,14 @@ int main(){
 
 // PRIORITY QUEUE
 
+	//pq of pairs max heap (default)
+	priority_queue<int> max_pq;
+	priority_queue<pair<int, int>> max_pq;
+
 	// pq of pairs min heap
-	priority_queue<pair<int, int>,vector<pair<int,int>>,greater<pair<int, int>>> pq;
+	priority_queue<int, vector<int>, greater<int>>
+	priority_queue<pair<int, int>,vector<pair<int,int>>,greater<pair<int, int>>> min_pq;
 
-	//pq of pairs max heap
-	priority_queue<pair<int, int>> pq;
-
-	//pq of int min heap
-	priority_queue<int , vector<int>, greater<int>> pq;
-
-	//pq of int max heap
-	priority_queue<int> pq;
 
 // bitset
 	bitset<8> b; // size must be declared before compilation
@@ -639,7 +636,7 @@ int main(){
 			}
 			cout << (*it) << endl;
 		
-			//ekhane integer er jonno upper/lower bound ber kora hoise
+			// ekhane integer er jonno upper/lower bound ber kora hoise
 			// pair, string etc er jonnou kaaj kore
 
 	// min_element
@@ -648,7 +645,7 @@ int main(){
 	// count
 	// find
 	// reverse
-	// prev** | vector er back, front func ase but onnoder(set, map) nai
+	// prev** | vector er back, front func ase but ar karor (set, map) nai
 
 						// pura duniya ekdike ar array onnodik
 						// array		pura duniya
@@ -685,9 +682,9 @@ int main(){
 		// Array er jonno
 			int a[]= {2, 3, 1, 6, 7, 6};	
 		
-			int min = *min_element(a, a+n;
+			int min = *min_element(a, a+n);
 			cout << min << endl;
-			auto max = max_element(a, a+n;
+			auto max = max_element(a, a+n);
 			cout << (*max) << endl;
 			int sum = accumulate(a, a+n, 0); //intial sum 0 
 			cout << sum << endl;

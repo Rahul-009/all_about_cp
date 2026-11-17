@@ -12,7 +12,7 @@
 	// But tree te visited array er dorkar nai
 	// visited array lage jeno parent node e abar na jay | otherwise loop e pore jabe
 
-// height - node to root (maximum)
+// height - leaf to node (maximum)
 // depth == shortest distance == BFS == level == root to node
 
 // leaf er height 0 | root er depth 0
@@ -48,7 +48,6 @@
 
 	
 // Isomorphism
-
 // Euler tour
 // Binary lifting
 
@@ -72,6 +71,9 @@
 	// value of flow = source out flow = sink in flow
 
 
+// For tree | worst case time and space complexity is O(n)
+// AVL tree O(logn) time
+
 // Practise Problems -
 	// https://codeforces.com/gym/102694
 		// A - find the diameter
@@ -81,6 +83,42 @@
 
 	// https://vjudge.net/contest/547647 (codeforces problems)
 	
+// Create tree
+Class Node{
+	int data;
+	Node *left, *right;
+
+	Node(int val){
+		data = val;
+		left = NULL;
+		right = NULL;
+	}
+}
+
+int main(){
+	int x; cin >> x; // root
+	int first, second;
+	queue<Node*> q;
+	Node* root = new Node(x);
+	q.push(root);
+	
+	while(!q.empty()){
+		Node *temp = q.front();
+		q.pop();
+		cout << "Enter left element: ";
+		cin >> first; // left child
+		if(x != -1){
+			temp->left = new Node(first);
+			q.push(temp->left);
+		}
+		cout << "Enter right element: ";
+		cin >> second;
+		if(second != -1){
+			temp->right = new Node(second);
+			q.push(temp->right);
+		}
+	}
+}
 
 // Basic tree code
 	// recursively go to all node

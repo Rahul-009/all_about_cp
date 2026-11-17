@@ -1,6 +1,6 @@
 // Leetcode 
 // Problem => Subsets
-// Link => https://leetcode.com/problems/subsets/description/
+
 
 // recursion O(n* 2^n)
 #include <bits/stdc++.h>

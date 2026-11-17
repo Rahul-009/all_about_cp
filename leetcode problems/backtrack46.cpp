@@ -3,12 +3,12 @@
 class Solution {
 public:
     vector<vector<int>> ans;
-    vector<int> path;
+    vector<int> perm;
     vector<bool> used;
 
     void backtrack(vector<int>& nums) {
 
-        if (path.size() == nums.size()) {
+        if (perm.size() == nums.size()) {
             ans.push_back(path);
             return;
         }
@@ -19,11 +19,11 @@ public:
                 continue;
 
             used[i] = true;
-            path.push_back(nums[i]);
+            perm.push_back(nums[i]);
 
             backtrack(nums);
 
-            path.pop_back();
+            perm.pop_back();
             used[i] = false;
         }
     }
@@ -37,3 +37,21 @@ public:
         return ans;
     }
 };
+
+
+
+
+// another method | without using extra space
+
+void getPerms(vector<int> & nums, int idx, vector<vector<int>> &ans){
+    for(int i = idx; i<nums.size(); i++){
+        swap(nums[idx], nums[i]);
+        getPerms(nums, idx+1, ans);
+        swap(nums[idx], nums[i]);
+    }
+}
+
+vector<vector<int>> permute(vector<int> &nums){
+    vector<vector<int>> ans;
+    getPerms(nums, 0, ans)
+}

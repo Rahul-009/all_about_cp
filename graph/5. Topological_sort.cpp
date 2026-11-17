@@ -58,7 +58,33 @@
 
 // Method 2
 	// stack and dfs
+    vector<int> g[N];
+    vector<bool> vis(N, 0);
+    stack<int> stk;
 
+    void dfs(int node){
+        vis[node] = true;
+        
+        for(auto child: g[node]){
+            if(!vis[child]){
+                vis[child] = true;
+                dfs(child);
+            }
+        }
+        stk.push(node);
+    }
+
+    void topSort(int n){
+        // handles disconnected graphs
+        for(int i=0; i<n; i++){
+            if(!vis[i]) 
+                dfs(i);
+        }
+        while(stk.size() > 0){
+            cout << stk.top() << " ";
+            stk.pop();
+        }
+    }
 	
 
 // practise problems

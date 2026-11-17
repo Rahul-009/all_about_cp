@@ -1,3 +1,17 @@
+// null character \0
+
+char s[20];
+cin >> s;
+cout << s;
+
+// string size
+int size = 0;
+int i = 0;
+while(s[i] != '\0'){
+	size++;
+}
+
+
 // string functions
 // resize function
 	string s = 'hello world';
@@ -33,6 +47,18 @@
 	}
 
 	cout << new_s << '\n'; // bc bc
+
+// s.push_back();
+// s.pop_back();
+
+// reverse a string
+	string s = "rahul";
+	int start = 0, end = s.size()-1;
+
+	while(start < end){
+		swap(s[start], s[end]);
+		start++, end--;
+	}
 
 //substr(start, count)
 	string s = "hello world";

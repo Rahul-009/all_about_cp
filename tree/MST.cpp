@@ -1,9 +1,45 @@
 // minimum spanning tree O(nlogn)
-    // 1. Prim's algorithm
+
+// 1. Prim's algorithm
     // spanning means all nodes are connected
     // minimum means sum of weights is minimum
 
-    #include<bits/stdc++.h>
+
+// simple
+const int N = 10;
+vector<pair<int, int>> g[N];
+vector<bool> inMST(N, false)
+vector<int> parent(N, 0);
+vector<int> mst;
+
+void prim(){
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, 0});
+
+    while(!pq.empty()){
+        auto p = pq.top();
+        int wt = p.first;
+        int u = p.second;
+        pq.pop();
+
+        if(!inMST[u]){
+            inMST[u] = true;
+            mstCost += wt;
+
+            for(auto child: g[u]){
+                int v = child.second;
+                int v_wt = child.first;
+                parent[v] = u;
+
+                if(!inMST[v])
+                    pq.push({v_wt, v});
+            }
+        }
+    }
+}
+
+// more complex
+#include<bits/stdc++.h>
 using namespace std;
 
 vector<pair<pair<int, int>, int>> result;

@@ -3,7 +3,7 @@
     // forest type er problem e kaaje lage
     // example - onek manush ase group group e bivokto | oder combine kore calculation kora lagbe
     
-     // make - adds new node to a network/forest | independent node banay
+    // make - adds new node to a network/forest | independent node banay
     // find - parent of the group    
     // union - a, b ke same group e dhukao
 	
@@ -25,7 +25,40 @@
 	    size[v] = 1;
 	}
 
-	int find(int v){
+    // simple DSU
+    int find(int v){
+        if(par[v] == v) return v;
+        return find(par[v]);
+    }
+
+    void Union(int a, int b){
+        int par_a = find(a);
+        int par_b = find(b);
+
+        if(par_a != par_b){
+            parent[b] = a;
+        }
+    }
+
+    // union by rank(height)
+    void unionByRank(int a, int b){
+        int parA = find(a);
+        int parB = find(b);
+
+        if(parA == parB) return;
+
+        if(rank[parA] == rank[parB]){
+            par[parB] = parA;
+            rank[parA]++;
+        }else if(rank[parA] > rank[parB]){
+            par[parB] = parA;
+        }else
+            par[parA] = parB;
+
+    }
+
+    // optimized
+    int find(int v){
 	    if(v == parent[v]) return v;
 	    return parent[v] = find(parent[v]); // recursive
 	}
@@ -35,7 +68,8 @@
 	    b = find(b);
 	    
 	    if( a != b ){
-	        if(size[a] < size[b]) swap(a, b);
+	        if(size[a] < size[b]) swap(a, b); //optimization
+
 	        parent[b] = a; // b ke a er niche jora lagay ditesi
 	        size[a] += size[b];
 	    }

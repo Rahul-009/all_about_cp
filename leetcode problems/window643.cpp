@@ -1,6 +1,6 @@
 // Leetcode 
 // Problem => maximum Average Subarray I
-// Link => 
+
 
 // bruteforce O(n^2)
 class Solution {

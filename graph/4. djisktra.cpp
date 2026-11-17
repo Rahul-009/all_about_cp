@@ -29,7 +29,7 @@
 	    vector<bool> vis(N, false);
 	    vector<int> dist(N, INF);
 
-	    set<pair<int, int>> st;
+	    set<pair<int, int>> st; // or priority_queue<pair<int, int>> pq; 
 	    st.insert({0, source});
 
 	    while(st.size() > 0){

@@ -1,6 +1,9 @@
 // Self balancing BST
-// height(left) - height(right) < 2
+// height(left) - height(right) <= 1
 // height difference 0 ar 1 allowed
+
+// BST worst case O(n) in insert, delete, search
+// AVL tree does all in O(logn)
 
 // Left rotation
 // right rotation

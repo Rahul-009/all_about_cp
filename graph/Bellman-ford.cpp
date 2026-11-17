@@ -15,7 +15,9 @@
 	// optimization | parent_dist == INF kina eta check korte hobe | INF hole relax kore labh nai
 
 
-
+// After n-1 relaxation passes, if we do one more pass and any distance can still be improved, 
+// it means a negative-weight cycle exists. 
+// Why? Because a negative cycle lets you keep reducing the path cost infinitely.
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -25,9 +27,10 @@ using namespace std;
 #define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
 
 const int INF = 1e9;
+vector<vector<int>> edges; // vector of {u, v, wt}
+vector<int> dist(n+1, INF);
 
-int bellman(int n, int m, int src, int dest, vector<vector<int>> &edges){
-	vector<int> dist(n+1, INF);
+int bellman(int n, int m, int src, int dest){
 	dist[src] = 0;
 
 	// 0 theke <n-1

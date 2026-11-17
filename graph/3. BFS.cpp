@@ -153,6 +153,35 @@
 	}
 
 
+// bipartite / bi-coloring
+	queue<int> q;
+	vector<int> adj[N];
+	vector<int> color(N);
+
+	bool is_bipartite(int n){
+		q.push(n);
+		color[n] = 1;
+		while(!q.empty()){
+			int v = q.front();
+			q.pop();
+			for(auto u: adj[v]){
+
+				if(color[u]!=0 && color[v] == color[u]){
+					return false;
+				}
+				if(!color[u]){
+					q.push(u);
+					if(color[v] == 1)
+						color[u] = 2;
+					else if(color[v]==2)
+						color[u] = 1;
+				}
+			}
+		}
+		return true;	
+	}
+
+
 // spoj nankaj
 	// solution process 
 	// how to code clean

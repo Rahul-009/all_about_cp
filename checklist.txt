@@ -22,6 +22,9 @@
 
 ## Trees
 - Basic properties
+- Binary Tree
+- Binary Search Tree
+- Heap
 - DFS
 - Binary Lifting
     # Kth ancestor of a tree node(1483)

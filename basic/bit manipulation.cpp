@@ -30,6 +30,8 @@ void printBinary(int num){
 	cout << endl;
 }
 
+cout << std::bitset<32>(num) << endl;
+
 int main(){
 	cout << INT_MAX << endl;
 
@@ -62,6 +64,8 @@ int main(){
 		}
 	}
 
+//bit read
+	printBinary((a>>k) & 1)
 
 //bit set
 	printBinary(a | (1<<2));
@@ -100,7 +104,7 @@ int main(){
 	//swapping two values
 	int a=4, b=6;
 	a = a ^ b;
-	b = b ^ a; // here a= a^b
+	b = a ^ b; // here a= a^b
 	a = a ^ b; // here a = a^b, b=a 
 
 	//all values of array are even in number except one. find that

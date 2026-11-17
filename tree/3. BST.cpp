@@ -1,3 +1,6 @@
+// yt resource
+	// coder army
+
 // Binary Search Tree
 	// left child smaller than root
 	// right child greater than root
@@ -77,21 +80,21 @@
 	   return root;
 	}
 
-// Search BST O(logn)
+// Search BST average O(logn) | worst case O(n)
 	// one comparison per level
 
-	Node* search(Node* root, int key){
+	Node* search(Node* root, int target){
 	   if(root == NULL) return NULL;
 
-	   if(root->data == key){
+	   if(root->data == target){
 	      return root;
 	   }
 
-	   if(root->data > key){
-	      return search(root->left, key);
+	   if(root->data > target){
+	      return search(root->left, target);
 	   }
 
-	   return search(root->right, key);
+	   return search(root->right, target);
 	}
 	
 	// handle NULL | otherwise error
@@ -101,8 +104,80 @@
 
 // Delete node
 	// case1 - No child (leaf node)
+		// delete node
+		// return NULL
 	// case2 - One child
+		// if only left exist
+			// delete node
+			// return left child
+		// if only right exist
+			// delete node
+			// return right child
 	// case3 - two child**
+		// find the greatest element in left (child)
+		// parent's right need to point child's left
+		// child left = target->left
+		// child right = target->right
+		// delete target
+		// return child
+		// edge case parent == target
+			// child->right = target->right
+
+		Node* deleteNode(Node *root, int target){
+			if(!root) return NULL;
+
+			if(root->data > target){
+				root->left = deleteNode(root->left, target);
+				return root;}
+			else if(root->data < target){
+				root->right = deleteNode(root->right, target);
+				return root;}
+			else{
+				// leaf node
+				if(!root->left && !root->right){
+					delete root;
+					return NULL;
+				}
+				// 1 child exist
+				// left child exist
+				else if(!root->right){ 
+					Node *temp = root->left;
+					delete root;
+					return temp;
+				}
+				// right child exist
+				else if(!root->left){ 
+					Node *temp = root->right;
+					delete root;
+					return temp;
+				}
+				// 2 child exist
+				else{
+					// find greatest element from left
+					Node *child = root->left;
+					Node *parent = root;
+
+					while(child->right){
+						parent = child;
+						child = child->right;
+					}
+
+					if(root != parent){
+						parent->right = child->left;
+						child->left = root->left;
+						child->right = root->right;
+						delete root;
+						return child;
+					}else{
+						child->right = root->right;
+						delete root;
+						return child;
+					}
+				}
+			}
+		}
+
+	  // or we can do it like this too	
 		// inorder successor diye replace korte hobe 
    		// inorder vabe lekhle jeta delete korbo oitar porer ta
    		// In other word | leftmost in right subtree
@@ -176,6 +251,105 @@
         return leftValid && rightValid;
     }
 
+	// approach 3 | O(N) + O(N) *** 
+		// find inOrder traversal
+		// check inOrder provides sorted array or not
+		void inOrder(Node *root, vector<int> &ans){
+			if(!root) return;
+
+			inOrder(root->left, ans);
+			ans.push_back(root->data);
+			inOrder(root->right, ans);
+		}
+
+		bool isBST(Node *root){
+			vector<int> ans;
+			inOrder(root, ans);
+
+			for(int i=1; i<ans.size(); i++){
+				if(ans[i] <=ans[i-1]) return 0;
+			}
+
+			return 1;
+		}
+	
+	// approach 4 | O(N)
+		// one inOrder loop
+		bool BST(Node *root, int &prev){
+			if(!root) return 1;
+
+			bool l = BST(root->left, prev);
+			if(l == 0) return 0;
+
+			if(root->data <= prev) return 0;
+			prev = root->data;
+
+			return BST(root->right, prev)
+		}
+
+		bool isBST(Node *root){
+			int prev = INT_MIN;
+			return BST(root, prev);
+		}
+
+// Minimum distance between BST nodes (leetcode 783)
+	// method 1
+		// find inOrder first
+		// loop through inOrder array and compare consecutive elements
+	
+	// method 2
+		// do everything in inOrder loop
+		void minDist(Node *root, int &prev, int &ans){
+			if(!root) return;
+
+			minDist(root->left, prev, ans);
+
+			if(prev != INT_MIN)
+				ans = min(ans, root->val - prev);
+			prev = root->data;
+
+			minDist(root->right, prev, ans);
+		}
+
+		int minDiffInBST(Node *root){
+			int prev = INT_MIN;
+			int ans = INT_MAX;
+			minDist(root, prev, ans);
+			return ans;
+		}
+
+// Sum of K smallest Element in BST
+	// method 1
+		// find inorder first
+		// do the job
+	// method 2
+		// inOrder loop e shob kore felbo
+		void kSum(Node *root, int &sum, int &k){
+			if(!root) return;
+
+			kSum(root->left, sum, k);
+
+			k--;
+			if(k>=0) sum = root->data;
+			if(k<=0) return;
+
+			kSum(root->right, sum, k);
+		}
+
+// kth largest element
+	void kLargest(Node *root, int &ans, int &k){
+		if(!root) return;
+
+		kLargest(root->right, ans, k);
+		
+		k--;
+		if(k==0) ans = root->data;
+		if(k<=0) return;
+
+		kLargest(root->left, ans, k);
+	}
+
+		
 
 // build balanced BST from ordered array
     //1. make middle element root
@@ -186,11 +360,24 @@
 	Node* buildBST(int arr[], int start, int end){
 	    if(start > end) return NULL;
 
-	    int mid = (start + end) / 2;
+	    int mid = (start + end) / 2; 
 	    Node* root = new Node(arr[mid]);
 
 	    root->left = buildBST(arr, start, mid-1);
 	    root->right = buildBST(arr, mid+1, end);
+
+	    return root;
+	}
+
+	// variation -> return preOrder BST | inOrder given
+	void buildBST(vector<int> arr, int start, int end, vector<int> &ans){
+	    if(start > end) return;
+
+	    int mid = (start + end) / 2; 
+	    ans.push_back(arr[mid]);
+		// left side
+	    buildBST(arr, start, mid-1, ans);
+	    buildBST(arr, mid+1, end, ans);
 
 	    return root;
 	}

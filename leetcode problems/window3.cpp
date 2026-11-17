@@ -1,6 +1,6 @@
 // Leetcode 
 // Problem => Longest Substring without repeating character
-// Link => https://leetcode.com/problems/$problem_name$/description/
+
 
 
 // hash + window

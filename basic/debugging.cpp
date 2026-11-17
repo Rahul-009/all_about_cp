@@ -19,7 +19,7 @@
 	// INT_MAX naki LLONG_MAX
 
 // Dynamic Programming
-	// always keep base cas exact
+	// always keep base case exact
 		// if( n == 0 ); | don't do if(n<=0);
 		// n < 0 jeno na hoy oijonno recursive call er age check boshano lagbe
 

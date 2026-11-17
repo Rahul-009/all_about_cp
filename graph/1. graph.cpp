@@ -2,6 +2,8 @@
 	// william fiset - https://youtube.com/playlist?list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P
 	// luv youtube
 	// love babbar
+	// Shraddha Graph playlist
+	// Coder Army
 
 /*
 storing graph
@@ -11,7 +13,7 @@ storing graph
 	vector<vector>
 	
 	weighted graph kom weight adj list of pairs
-	too many weights | store int matrix
+	too many weights | store into matrix
 
 DFS
 	connected components
@@ -153,52 +155,61 @@ Semi-Eulerian graph
 
 
     //3. vector of vector
+	int nodes, edges; cin >> nodes >> edges;
+	vector<vector<int>> g(nodes);
+
+	for(int i=0; i<edges; i++){
+		int u, v; cin >> u >> v;
+		g[u].push_back(v);
+		g[v].push_back(u);
+	}
+
+	for(int i=0; i<nodes; i++){
+		cout << i << endl;
+		for(auto child: g[i]){
+			cout << child << " ";
+		}
+		cout << endl;
+	}
 
     //4. 2D array / matrix
+	const int N = 1006;
+	int adj[N][N];
 
+	int main(){
+		int nodes, edges;
+		cin >> nodes >> edges;
 
+		for(int i=0; i<nodes; i++)
+			for(int j=0; j<nodes; j++)
+				adj[i][j] = 0;
 
+		for(int i=0; i<edges; i++){
+			int u, v; cin >> u >> v;
+			adj[u][v] = 1;
+			adj[v][u] = 1;
+		}
 
-
-//cycle count and print
-	vector<int> adj[N];
-	int par[N];
-	int color[N];
-
-	vector<vector<int>> cycles;
-	int cycle = 0;
-
-	void dfs_cycle(int u, int p){
-		cout << u << " " << p << endl;
-
-		if(color[u] == 2) return;
-
-		if(color[u] == 1){
-			vector<int> v;
-			int curr = p;
-			v.pb(curr);
-
-			while(curr != u){
-				curr = par[curr];
-				v.pb(curr);
+		for(int i = 0; i<nodes; i++){
+			for(int j=0; j<nodes; j++){
+				cout << adj[i][j] << endl;
 			}
-
-			cycles.pb(v);
-			return;
 		}
+	}
 
-		color[u] = 1;
-		par[u] = p;
+	// 2D vector
+	vector<vector<int>> adj(nodes, vector<int>(nodes, 0));
 
-		for(auto child: adj[u]){
-			if(child == p) continue;
-			dfs_cycle(child, u);
-		}
-
-		color[u] = 2;
-	} 
+ 
 
 
 
+// other algos
 
-
+// DFS | Traversal
+// BFS, Djikstra, Bellman Ford, Floyd Warshall | shortest path
+// Prims Algo, Kruskal Algo | MST
+// Tarjans algo | for Bridge and AP
+// Kosaraju's algo | for SCC
+// kahn's algo | for Top sort
+// Disjoint Set union (DSU) | Forest
