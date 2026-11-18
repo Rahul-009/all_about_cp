@@ -67,8 +67,9 @@
 
 // Some basic problems
 	// fibonacci O(2^n) | actually goldenRatio^n
-
-	// Binary search
+	// array recursion
+	// string recursion
+	// Binary search recursion
 	int search(int arr[], int target, int start, int end){
 		if(start > end) return -1;
 
@@ -112,8 +113,8 @@
 		}
 	// pallindrome
 		bool palin()
+		
 	// count no of zeroes in a number
-
 		int zero(int n, int c){
 			if(n == 0) return c; // c returned once
 			// this c will be returned by every function until it reach top

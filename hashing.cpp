@@ -23,3 +23,6 @@
 // Encryption - Decryption
     // Message Integrity check korar jonno Hash Code use hoy
     // Avalanche Effect
+
+// Design hashset (leetcode)
+// Design hashmap (leetcode)
